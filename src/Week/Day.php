@@ -2,6 +2,8 @@
 
 namespace Alf\ScheduleTable\Week;
 
+use Alf\ScheduleTable\ScheduleTableException;
+
 class Day
 {
     protected $englishName;
@@ -11,9 +13,9 @@ class Day
 
     function __construct($englishName, $label = NULL)
     {
-        $this->englischDayName = $englishName;
+        $this->englishName = $englishName;
 
-        $this->dayLabel = $label
+        $this->label = $label
             ? $label
             : $englishName;
     }
@@ -38,7 +40,7 @@ class Day
         $timestamp = strtotime($englishName);
 
         if (!$timestamp) {
-            throw new \InvalidArgumentException('No valid format');
+            throw new ScheduleTableException('No valid format for day ' . $englishName);
         }
 
         return $timestamp;
@@ -49,7 +51,7 @@ class Day
         $numberOfDayInWeek = date('N', $timestamp);
 
         if (!$numberOfDayInWeek) {
-            throw new \InvalidArgumentException('No valid format');
+            throw new ScheduleTableException('No valid format for timestamp ' . $timestamp);
         }
 
         return $numberOfDayInWeek;

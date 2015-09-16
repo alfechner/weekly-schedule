@@ -4,17 +4,23 @@ namespace Alf\ScheduleTable\Table;
 
 class Row {
 
-    protected $cells = array();
     protected $column;
+    protected $dateTime;
+    protected $index;
 
-    public function addCell(Cell $cell)
+    function __construct($index, $dateTime)
     {
-        $this->cells[] = $cell;
+        $this->index = $index;
+        $this->dateTime = $dateTime;
     }
 
-    public function getCells()
+    public function getIndex()
     {
-        return $this->cells;
+        return $this->index;
     }
 
+    public function getDateTime()
+    {
+        return $this->dateTime;
+    }
 }

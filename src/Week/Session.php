@@ -2,15 +2,20 @@
 
 namespace Alf\ScheduleTable\Week;
 
+use DateTime;
+
 class Session
 {
     protected $from;
     protected $till;
     protected $content;
 
-    function __construct(\DateTime $from, \DateTime $till, $content)
+    function __construct(DateTime $from, DateTime $till, array $content)
     {
+        /** @var DateTime from */
         $this->from = $from;
+
+        /** @var DateTime till */
         $this->till = $till;
         $this->content = $content;
     }
@@ -32,6 +37,6 @@ class Session
 
     public function getDuration()
     {
-        // TODO
+        return $this->getTill()->diff($this->getFrom());
     }
 }

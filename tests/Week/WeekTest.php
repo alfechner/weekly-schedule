@@ -4,16 +4,43 @@ use \Alf\ScheduleTable\Week\Week;
 use \Alf\ScheduleTable\Week\Day;
 use \Alf\ScheduleTable\Week\Session;
 
-require_once '../vendor/autoload.php';
-
 class WeekTest extends PHPUnit_Framework_TestCase
 {
+    /** @var Week $week */
     protected $week;
     protected $days;
+    protected $earliestSession;
+    protected $latestSession;
+
+    public function testEarliestSession()
+    {
+        $week = $this->week;
+        $earliestSession = $week->getEarliestSessionOfWeek();
+        $latestSession = $week->getLatestSessionOfWeek();
+
+        $this->assertSame($this->earliestSession, $earliestSession);
+        $this->assertNotSame($this->earliestSession, $latestSession);
+    }
+
+    public function testLatestSession()
+    {
+        $week = $this->week;
+        $earliestSession = $week->getEarliestSessionOfWeek();
+        $latestSession = $week->getLatestSessionOfWeek();
+
+        $this->assertSame($this->latestSession, $latestSession);
+        $this->assertNotSame($this->latestSession, $earliestSession);
+    }
 
     public function testNumberOfDays() {
         $days = $this->week->getDays();
         $this->assertCount(7, $days);
+    }
+
+    public function testNumberOfSessionsInWeek()
+    {
+        $sessions = $this->week->getAllSessionsOfWeek();
+        $this->assertCount(9, $sessions);
     }
 
     /**
@@ -31,7 +58,10 @@ class WeekTest extends PHPUnit_Framework_TestCase
         $saturday = $this->createDay('Saturday', 'Samstag');
         $sunday = $this->createDay('Sunday', 'Sonntag');
 
-        $monday->addSession($this->createSession('16:00:00', '17:00:00', 'Anfänger'));
+        $this->earliestSession = $this->createSession('16:00:00', '17:00:00', 'Anfänger');
+        $this->latestSession = $this->createSession('19:00:00', '21:00:00', 'Wettkampf');
+
+        $monday->addSession($this->earliestSession);
         $monday->addSession($this->createSession('17:00:00', '18:30:00', 'Fortgeschirttene'));
 
         $tuesday->addSession($this->createSession('16:00:00', '17:30:00', 'Fortgeschirttene'));
@@ -42,7 +72,7 @@ class WeekTest extends PHPUnit_Framework_TestCase
 
         $thursday->addSession($this->createSession('16:00:00', '17:30:00', 'Fortgeschirttene'));
         $thursday->addSession($this->createSession('17:30:00', '19:00:00', 'Fortgeschirttene Wettkampf'));
-        $thursday->addSession($this->createSession('19:00:00', '21:00:00', 'Wettkampf'));
+        $thursday->addSession($this->latestSession);
 
         $days = array(
             $monday,

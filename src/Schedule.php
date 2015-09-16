@@ -4,6 +4,8 @@ namespace Alf\ScheduleTable;
 
 use Alf\ScheduleTable\Renderer\AbstractRenderer;
 use Alf\ScheduleTable\Renderer\HtmlRenderer;
+use Alf\ScheduleTable\Table\Table;
+use Alf\ScheduleTable\Week\Week;
 
 class Schedule {
 
@@ -41,7 +43,8 @@ class Schedule {
     {
         $table = new Table();
 
-        // todo
+        $transformer = new WeekToTableTransformer();
+        $transformer->transform($week, $table);
 
         return $table;
     }

@@ -2,11 +2,16 @@
 
 namespace Alf\ScheduleTable\Table;
 
+use Alf\ScheduleTable\Exception\ScheduleTableException;
+
 class Column {
 
-    protected $rows = array();
+    const OCCUPIED_BY_CELL_HEIGHT = 'occupied';
+
     protected $index;
     protected $label;
+    /** @var Cell[] $cells */
+    protected $cells = array();
 
     function __construct($index, $label)
     {
@@ -24,14 +29,112 @@ class Column {
         return $this->label;
     }
 
-    public function addRow(Row $row)
+    public function addCellForRow(Cell $cell, Row $row)
     {
-        $this->rows[] = $row;
+        $this->tryAddCellForRow($cell, $row);
+        $this->tryOccupyNeededRows($cell, $row);
     }
 
-    public function getRows()
+    protected function tryAddCellForRow(Cell $cell, Row $row)
     {
-        return $this->rows;
+        $rowIndex = $row->getIndex();
+        if ($this->isRowIndexOccupied($rowIndex)) {
+            $this->throwOccupiedException();
+        }
+
+        $this->cells[$rowIndex] = $cell;
     }
 
+    protected function isRowIndexOccupied($rowIndex)
+    {
+        if (array_key_exists($rowIndex, $this->cells)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function tryOccupyNeededRows(Cell $cell, Row $row)
+    {
+        $height = $cell->getHeight();
+        $rowIndex = $row->getIndex();
+
+        $first = $rowIndex + 1;
+        $last = $rowIndex + $height - 1;
+
+        for ($i = $first; $i <= $last; $i++) {
+            $this->tryOccupyRowByIndex($i);
+        }
+    }
+
+    protected function tryOccupyRowByIndex($rowIndex)
+    {
+        if ($this->isRowIndexOccupied($rowIndex)) {
+            $this->throwOccupiedException();
+        }
+
+        $this->cells[$rowIndex] = self::OCCUPIED_BY_CELL_HEIGHT;
+    }
+
+    protected function throwOccupiedException()
+    {
+        throw new ScheduleTableException('Overlapping sessions, row is already occupied');
+    }
+
+    public function getCells()
+    {
+        return $this->cells;
+    }
+
+    public function getCellContentByRow(Row $row)
+    {
+        $rowIndex = $row->getIndex();
+        $content = array();
+
+        if ($this->isRowIndexOccupied($rowIndex)) {
+            $cell = $this->cells[$rowIndex];
+            if ($cell instanceof Cell) {
+                $content = $cell->getContent();
+            }
+        }
+
+        return $content;
+    }
+
+    protected function isOccupiedByCellHeight($cell)
+    {
+        return $cell === self::OCCUPIED_BY_CELL_HEIGHT;
+    }
+
+    protected function isNotOccupiedByCellHeight($cell)
+    {
+        return $this->isOccupiedByCellHeight($cell);
+    }
+
+    public function renderCellForRow(Row $row) {
+        $rowIndex = $row->getIndex();
+
+        if ($this->isRowIndexOccupied($rowIndex)) {
+            $cell = $this->cells[$rowIndex];
+            if ($this->isOccupiedByCellHeight($cell)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public function getRowspanForRow(Row $row)
+    {
+        $rowIndex = $row->getIndex();
+
+        if ($this->isRowIndexOccupied($rowIndex)) {
+            $cell = $this->cells[$rowIndex];
+            if ($cell instanceof Cell) {
+                return $cell->getHeight();
+            }
+        }
+
+        return 1;
+    }
 }
