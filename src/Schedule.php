@@ -1,11 +1,11 @@
 <?php
 
-namespace Alf\ScheduleTable;
+namespace Alf\WeeklySchedule;
 
-use Alf\ScheduleTable\Renderer\AbstractRenderer;
-use Alf\ScheduleTable\Renderer\HtmlRenderer;
-use Alf\ScheduleTable\Table\Table;
-use Alf\ScheduleTable\Week\Week;
+use Alf\WeeklySchedule\Renderer\AbstractRenderer;
+use Alf\WeeklySchedule\Renderer\HtmlRenderer;
+use Alf\WeeklySchedule\Table\Table;
+use Alf\WeeklySchedule\Week\Week;
 
 class Schedule {
 

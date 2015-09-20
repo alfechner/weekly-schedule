@@ -2,7 +2,7 @@
 
 use \DateTime;
 use \DateInterval;
-use Alf\ScheduleTable\Week\Session;
+use Alf\WeeklySchedule\Week\Session;
 
 class SessionTest extends PHPUnit_Framework_TestCase
 {

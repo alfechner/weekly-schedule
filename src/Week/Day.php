@@ -1,8 +1,8 @@
 <?php
 
-namespace Alf\ScheduleTable\Week;
+namespace Alf\WeeklySchedule\Week;
 
-use Alf\ScheduleTable\ScheduleTableException;
+use Alf\WeeklySchedule\WeeklyScheduleException;
 
 class Day
 {
@@ -40,7 +40,7 @@ class Day
         $timestamp = strtotime($englishName);
 
         if (!$timestamp) {
-            throw new ScheduleTableException('No valid format for day ' . $englishName);
+            throw new WeeklyScheduleException('No valid format for day ' . $englishName);
         }
 
         return $timestamp;
@@ -51,7 +51,7 @@ class Day
         $numberOfDayInWeek = date('N', $timestamp);
 
         if (!$numberOfDayInWeek) {
-            throw new ScheduleTableException('No valid format for timestamp ' . $timestamp);
+            throw new WeeklyScheduleException('No valid format for timestamp ' . $timestamp);
         }
 
         return $numberOfDayInWeek;

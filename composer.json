@@ -1,6 +1,6 @@
 {
-    "name": "alf/scheduletable",
-    "description": "Lib for creating schedule tables i.e. for training sessions for a sports club.",
+    "name": "alf/weekly-schedule",
+    "description": "Lib for creating weekly schedule tables i.e. for training sessions for a sports club.",
 
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
@@ -8,7 +8,7 @@
 
     "autoload": {
         "psr-4": {
-            "Alf\\ScheduleTable\\": "src/"
+            "Alf\\WeeklySchedule\\": "src/"
         }
     }
 }

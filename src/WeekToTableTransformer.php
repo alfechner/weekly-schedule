@@ -1,14 +1,14 @@
 <?php
 
-namespace Alf\ScheduleTable;
+namespace Alf\WeeklySchedule;
 
-use Alf\ScheduleTable\Table\Cell;
-use Alf\ScheduleTable\Table\Column;
-use Alf\ScheduleTable\Week\Week;
-use Alf\ScheduleTable\Week\Session;
-use Alf\ScheduleTable\Week\Day;
-use Alf\ScheduleTable\Table\Table;
-use Alf\ScheduleTable\Table\Row;
+use Alf\WeeklySchedule\Table\Cell;
+use Alf\WeeklySchedule\Table\Column;
+use Alf\WeeklySchedule\Week\Week;
+use Alf\WeeklySchedule\Week\Session;
+use Alf\WeeklySchedule\Week\Day;
+use Alf\WeeklySchedule\Table\Table;
+use Alf\WeeklySchedule\Table\Row;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use DateInterval;
 

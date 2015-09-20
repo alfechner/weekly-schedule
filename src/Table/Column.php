@@ -1,8 +1,8 @@
 <?php
 
-namespace Alf\ScheduleTable\Table;
+namespace Alf\WeeklySchedule\Table;
 
-use Alf\ScheduleTable\Exception\ScheduleTableException;
+use Alf\WeeklySchedule\Exception\WeeklyScheduleException;
 
 class Column {
 
@@ -78,7 +78,7 @@ class Column {
 
     protected function throwOccupiedException()
     {
-        throw new ScheduleTableException('Overlapping sessions, row is already occupied');
+        throw new WeeklyScheduleException('Overlapping sessions, row is already occupied');
     }
 
     public function getCells()

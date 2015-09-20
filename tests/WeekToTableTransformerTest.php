@@ -1,11 +1,11 @@
 <?php
 
-use Alf\ScheduleTable\Week\Week;
-use Alf\ScheduleTable\Week\Day;
-use Alf\ScheduleTable\Week\Session;
-use Alf\ScheduleTable\Table\Table;
-use Alf\ScheduleTable\WeekToTableTransformer;
-use Alf\ScheduleTable\Exception\ScheduleTableException;
+use Alf\WeeklySchedule\Week\Week;
+use Alf\WeeklySchedule\Week\Day;
+use Alf\WeeklySchedule\Week\Session;
+use Alf\WeeklySchedule\Table\Table;
+use Alf\WeeklySchedule\WeekToTableTransformer;
+use Alf\WeeklySchedule\Exception\WeeklyScheduleException;
 
 class WeekToTableTransformerTest extends PHPUnit_Framework_TestCase
 {
@@ -30,7 +30,7 @@ class WeekToTableTransformerTest extends PHPUnit_Framework_TestCase
 
         try {
             $transformer->transform($week, $table);
-        } catch (ScheduleTableException $e) {
+        } catch (WeeklyScheduleException $e) {
             $message = $e->getMessage();
         }
 
@@ -52,7 +52,7 @@ class WeekToTableTransformerTest extends PHPUnit_Framework_TestCase
 
         try {
             $transformer->transform($week, $table);
-        } catch (ScheduleTableException $e) {
+        } catch (WeeklyScheduleException $e) {
             $message = $e->getMessage();
         }
 

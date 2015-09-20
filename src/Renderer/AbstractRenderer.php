@@ -1,8 +1,8 @@
 <?php
 
-namespace Alf\ScheduleTable\Renderer;
+namespace Alf\WeeklySchedule\Renderer;
 
-use Alf\ScheduleTable\Table\Table;
+use Alf\WeeklySchedule\Table\Table;
 
 interface AbstractRenderer {
     public function renderTable(Table $table);

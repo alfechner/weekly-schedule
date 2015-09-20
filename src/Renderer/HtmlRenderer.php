@@ -1,8 +1,8 @@
 <?php
 
-namespace Alf\ScheduleTable\Renderer;
+namespace Alf\WeeklySchedule\Renderer;
 
-use Alf\ScheduleTable\Table\Table;
+use Alf\WeeklySchedule\Table\Table;
 
 class HtmlRenderer implements AbstractRenderer {
 

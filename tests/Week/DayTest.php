@@ -1,6 +1,6 @@
 <?php
 
-use \Alf\ScheduleTable\Week\Day;
+use \Alf\WeeklySchedule\Week\Day;
 
 class DayTest extends PHPUnit_Framework_TestCase
 {

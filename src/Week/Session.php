@@ -1,6 +1,6 @@
 <?php
 
-namespace Alf\ScheduleTable\Week;
+namespace Alf\WeeklySchedule\Week;
 
 use DateTime;
 

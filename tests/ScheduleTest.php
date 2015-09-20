@@ -1,11 +1,11 @@
 <?php
 
-use Alf\ScheduleTable\Week\Week;
-use Alf\ScheduleTable\Week\Day;
-use Alf\ScheduleTable\Week\Session;
-use Alf\ScheduleTable\Table\Table;
-use Alf\ScheduleTable\WeekToTableTransformer;
-use Alf\ScheduleTable\Schedule;
+use Alf\WeeklySchedule\Week\Week;
+use Alf\WeeklySchedule\Week\Day;
+use Alf\WeeklySchedule\Week\Session;
+use Alf\WeeklySchedule\Table\Table;
+use Alf\WeeklySchedule\WeekToTableTransformer;
+use Alf\WeeklySchedule\Schedule;
 
 class ScheduleTest extends PHPUnit_Framework_TestCase
 {

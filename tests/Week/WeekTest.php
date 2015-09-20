@@ -1,8 +1,8 @@
 <?php
 
-use \Alf\ScheduleTable\Week\Week;
-use \Alf\ScheduleTable\Week\Day;
-use \Alf\ScheduleTable\Week\Session;
+use \Alf\WeeklySchedule\Week\Week;
+use \Alf\WeeklySchedule\Week\Day;
+use \Alf\WeeklySchedule\Week\Session;
 
 class WeekTest extends PHPUnit_Framework_TestCase
 {

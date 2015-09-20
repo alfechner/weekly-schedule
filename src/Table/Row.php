@@ -1,6 +1,6 @@
 <?php
 
-namespace Alf\ScheduleTable\Table;
+namespace Alf\WeeklySchedule\Table;
 
 class Row {
 
