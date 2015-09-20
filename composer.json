@@ -1,4 +1,7 @@
 {
+    "name": "alf/scheduletable",
+    "description": "Lib for creating schedule tables i.e. for training sessions for a sports club.",
+
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
     },
