@@ -44,10 +44,14 @@ class HtmlRenderer implements AbstractRenderer {
 
     protected function getContentString(array $content) {
 
-        if (array_key_exists('title', $content)) {
-            return $content['title'];
+        $contentString = '';
+        if (array_key_exists('training_name', $content)) {
+            $contentString = $content['training_name'];
+            if (array_key_exists('training_link', $content)) {
+                $contentString = '<a href="' . $content['training_link'] . '">' . $contentString . '</a>';
+            }
         }
 
-        return '';
+        return $contentString;
     }
 }
