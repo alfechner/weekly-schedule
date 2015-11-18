@@ -41,13 +41,13 @@ class Table
     public function removeEmptyRows()
     {
         foreach ($this->getRows() as $row) {
-            if ($this->rowIsEmpty($row)) {
+            if ($this->isRowEmpty($row)) {
                 $this->removeRow($row);
             }
         }
     }
 
-    protected function rowIsEmpty(Row $row)
+    public function isRowEmpty(Row $row)
     {
         foreach ($this->getColumns() as $column) {
             if ($column->isRowIndexOccupied($row->getIndex())) {
