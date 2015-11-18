@@ -21,17 +21,21 @@ class WeekToTableTransformer {
     /** @var Table $table */
     protected $table;
 
-    public function transform(Week $week, Table $table)
+    public function transform(Week $week)
     {
         $this->week = $week;
-        $this->table = $table;
+        $this->table = new Table();
+
         $this->transformWeekToTable();
+
+        return $this->table;
     }
 
     protected function transformWeekToTable()
     {
         $this->addRowsToTable();
         $this->addColumnsToTable();
+
     }
 
     protected function addColumnsToTable()

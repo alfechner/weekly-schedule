@@ -35,6 +35,15 @@ class Column {
         $this->tryOccupyNeededRows($cell, $row);
     }
 
+    public function isRowIndexOccupied($rowIndex)
+    {
+        if (array_key_exists($rowIndex, $this->cells)) {
+            return true;
+        }
+
+        return false;
+    }
+
     protected function tryAddCellForRow(Cell $cell, Row $row)
     {
         $rowIndex = $row->getIndex();
@@ -43,15 +52,6 @@ class Column {
         }
 
         $this->cells[$rowIndex] = $cell;
-    }
-
-    protected function isRowIndexOccupied($rowIndex)
-    {
-        if (array_key_exists($rowIndex, $this->cells)) {
-            return true;
-        }
-
-        return false;
     }
 
     protected function tryOccupyNeededRows(Cell $cell, Row $row)

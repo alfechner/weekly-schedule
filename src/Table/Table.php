@@ -2,7 +2,8 @@
 
 namespace Alf\WeeklySchedule\Table;
 
-class Table {
+class Table
+{
 
     /** @var Row[] $rows */
     protected $rows = array();
@@ -26,8 +27,34 @@ class Table {
         $this->rows[$index] = $row;
     }
 
+    public function removeRow(Row $row)
+    {
+        $index = $row->getIndex();
+        unset($this->rows[$index]);
+    }
+
     public function getRows()
     {
         return $this->rows;
+    }
+
+    public function removeEmptyRows()
+    {
+        foreach ($this->getRows() as $row) {
+            if ($this->rowIsEmpty($row)) {
+                $this->removeRow($row);
+            }
+        }
+    }
+
+    protected function rowIsEmpty(Row $row)
+    {
+        foreach ($this->getColumns() as $column) {
+            if ($column->isRowIndexOccupied($row->getIndex())) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

@@ -20,21 +20,23 @@ class ScheduleTest extends PHPUnit_Framework_TestCase
         $schedule = new Schedule();
         $week = $this->week;
 
-        $output = $schedule->render($week);
+        $transformer = new WeekToTableTransformer();
+        $table = $transformer->transform($week);
+
+        $output = $schedule->render($table);
         $this->assertNotNull($output);
     }
 
     public function testTransform()
     {
         $week = $this->week;
-        $table = new Table();
 
         $transformer = new WeekToTableTransformer();
-        $transformer->transform($week, $table);
+        $table = $transformer->transform($week);
 
         $rows = $table->getRows();
-        $this->assertCount(20, $rows);
 
+        $this->assertCount(20, $rows);
         $this->assertCount(7, $table->getColumns());
     }
 

@@ -62,14 +62,13 @@ class WeekToTableTransformerTest extends PHPUnit_Framework_TestCase
     public function testTransform()
     {
         $week = $this->week;
-        $table = new Table();
 
         $transformer = new WeekToTableTransformer();
-        $transformer->transform($week, $table);
+        $table = $transformer->transform($week);
 
         $rows = $table->getRows();
-        $this->assertCount(20, $rows);
 
+        $this->assertCount(20, $rows);
         $this->assertCount(7, $table->getColumns());
     }
 

@@ -30,10 +30,9 @@ class Schedule {
         $this->renderStrategy = $renderStrategy;
     }
 
-    public function render($week)
+    public function render(Table $table)
     {
         $renderStrategy = $this->renderStrategy;
-        $table = $this->getTableFromWeek($week);
         $output = $renderStrategy->renderTable($table);
 
         return $output;
