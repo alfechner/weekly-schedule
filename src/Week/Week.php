@@ -13,6 +13,7 @@ class Week
 
     public function getDays()
     {
+        ksort($this->days);
         return $this->days;
     }
 
